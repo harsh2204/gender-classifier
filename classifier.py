@@ -1,6 +1,6 @@
 from sklearn import tree
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.linear_model import LogisticRegression
+from sklearn.neighbors import KNeighborsClassifier #K Nearest Neighbor
+from sklearn.linear_model import LogisticRegression #Logistic Regression
 from sklearn.naive_bayes import GaussianNB # Naive Bayes
 
 
@@ -41,5 +41,5 @@ prediction_gnb = gnb.predict([[190, 70, 43]])
 
 print(f'Predition tree : {prediction_tree}')           #male
 print(f'KNearest Neighbor: {prediction_neigh}')        #male
-print(f'Logistic Regression: {prediction_logist}')     #female
+print(f'Logistic Regression: {prediction_logist}')     #female   (wrong!)
 print(f'Naive Bayes: {prediction_gnb}')                #male
