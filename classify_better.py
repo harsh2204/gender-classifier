@@ -7,22 +7,32 @@ from sklearn.naive_bayes import GaussianNB # Naive Bayes
 gnb = GaussianNB()
 
 df = pd.read_csv("Transformed Data Set - Sheet1.csv")
-df = df.to_dict('split')
+dict_df = df.to_dict('split')
 dataset = []
 genders = []
 # pprint(df)
 
-for data in df['data']:
-    genders.append(data.pop())
-    dataset.append(data)
+sets = []
+for head in df:
+    sets += list(set(df[head]))
 
-# pprint(genders)
-# pprint(dataset)
+# print(sets)
+
+def mapper(x): # Ew
+    return sets.index(x)   
+
+for data in dict_df['data']:
+    genders.append(data.pop())
+    dataset.append(list(map(mapper, data))) 
+    # Don't know enough about ML currently to implement this in a better way
+    # But it works atleast
+
+pprint(dataset)
 print("Dataset Loaded!")
 
 gnb.fit(dataset,genders)
-# Doesn't work :(
 test = ['Cool','Pop','Beer','Coca Cola/Pepsi']
 
-prediction = gnb.predict(test)
+array = list(map(mapper, test))
+prediction = gnb.predict([array])
 print(f'Prediction for [{test}]: {prediction}')
